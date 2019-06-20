@@ -6,6 +6,14 @@ public class BoardServiceImpl implements IBoardService {
 	
 	private IBoardDao boardDao;
 
+	public BoardServiceImpl() {
+		
+	}
+	
+	public BoardServiceImpl(IBoardDao boardDao) {
+		this.boardDao = boardDao;
+	}
+	
 	public IBoardDao getBoardDao() {
 		return boardDao;
 	}
