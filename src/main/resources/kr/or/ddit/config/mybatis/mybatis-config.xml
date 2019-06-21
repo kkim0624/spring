@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 	삭제<properties resource="kr/or/ddit/config/mybatis/db.properties"/> -->
+
+	<typeAliases>
+		<typeAlias alias="userVo" type="kr.or.ddit.user.model.UserVo"/>
+<!-- 		<typeAlias alias="pageVo" type="kr.or.ddit.paging.model.PageVo"/> -->
+<!-- 		<typeAlias alias="LprodVo" type="kr.or.ddit.lprod.model.LprodVo"/> -->
+<!-- 		<typeAlias alias="MemberVo" type="kr.or.ddit.member.model.MemberVo"/> -->
+	</typeAliases>
+	
+  
+  <mappers>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml"/>
+<!--     <mapper resource="kr/or/ddit/config/mybatis/mapper/lprod.xml"/>  -->
+<!--     <mapper resource="kr/or/ddit/config/mybatis/mapper/member.xml"/>  -->
+  </mappers>
+</configuration>
