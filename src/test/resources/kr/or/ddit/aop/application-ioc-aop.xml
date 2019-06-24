@@ -17,7 +17,6 @@
 	<context:component-scan base-package="kr.or.ddit"/>
 	<context:annotation-config/>
 	
-	
 	<aop:config>
 		<!-- 
 			  모든 서비스 메소드에 대해 loggingAspect를 적용하고자 한다.
