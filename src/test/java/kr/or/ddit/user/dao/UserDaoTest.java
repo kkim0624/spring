@@ -86,71 +86,67 @@ public class UserDaoTest extends LogicTestEnv {
 		assertEquals("곰-한글", userVo.getAlias());
 	}
 	
-	/**
-	 * 
-	* Method : userPagingListTest
-	* 작성자 : PC04
-	* 변경이력 :
-	* Method 설명 : 사용자 페이징 리스트 조회 테스트
+	/** 
+	 * Method   : userPagingListTest
+	 * 작성자 : PC04
+	 * 변경이력 :  
+	 * Method 설명 : 사용자 페이징 리스트 조회 테스트
 	 */
 	@Test
 	public void userPagingListTest(){
 		/***Given***/
-		PageVo pageVo = new PageVo(1,10);
-		
+		PageVo pageVo = new PageVo(1, 10);
+
 		/***When***/
 		List<UserVo> userList = userDao.userPagingList(pageVo);
-		
+
 		/***Then***/
 		assertNotNull(userList);
-		assertEquals(10, userList.size());
+		assertEquals(10, userList.size());	
 	}
 	
-	/**
-	 * 
-	* Method : usersCntTest
-	* 작성자 : PC04
-	* 변경이력 :
-	* Method 설명 : 사용자 전체수 조회 테스트
+	/** 
+	 * Method   : usersCntTest
+	 * 작성자 : PC04
+	 * 변경이력 :  
+	 * Method 설명 : 사용자 전체수 조회 테스트 
 	 */
 	@Test
 	public void usersCntTest(){
 		/***Given***/
-		
+
 		/***When***/
 		int usersCnt = userDao.usersCnt();
+
 		/***Then***/
 		assertEquals(106, usersCnt);
-
 	}
 	
-	/**
-	 * 
-	* Method : updateUserTest
-	* 작성자 : PC04
-	* 변경이력 :
-	* Method 설명 : 사용자 수정 테스트
+	/** 
+	 * Method   : updateUserTest
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @throws ParseException 
+	 * Method 설명 : 사용자 삭제 테스트 
 	 */
 	@Test
-	public void updateUserTest(){
-		
+	public void updateUserTest() throws ParseException{
+		/***Given***/
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		UserVo userVo = null;
 		
-		try {
-			userVo = new UserVo("김경호", "brown", "kkang", "kkh123", "궁동", "빌라", "1234", sdf.parse("2019-05-31"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		UserVo originVo = new UserVo("대덕인", "userTest", "중앙로", "userTest1234",
+				"대전광역시 중구 중앙로76", "영민빌딩 2층 204호", "34940", sdf.parse("2019-05-31"));
+		userDao.insertUser(originVo);
 		
+		UserVo userVo = new UserVo("대덕인_변경", "userTest", "중앙", "userTest1234",
+				"대전광역시 중구 중앙로77", "영민빌딩 2층 204-1호", "34945", sdf.parse("2019-05-31"));
+
 		/***When***/
-//		userDao.insertUser();
-		int updateCnt = userDao.updateDateUser(userVo);
-		
+		int updateCnt = userDao.updateUser(userVo);
+
 		/***Then***/
-//		insertCnt(1);
 		assertEquals(1, updateCnt);
-				
+		userDao.deleteUser(originVo.getUserId());
 	}
 	
 }

@@ -66,38 +66,52 @@ public class UserDaoImpl implements IUserDao{
 	public UserVo getUser(String userId) {
 		return sqlSession.selectOne("user.getUser", userId);
 	}
-	
-	/**
-	 * 
-	* Method : updateDataUser
-	* 작성자 : PC04
-	* 변경이력 :
-	* @param userVo
-	* @return
-	* Method 설명 : 사용자 정보 업데이트
+
+	/** 
+	 * Method   : updateUser
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @param userVo
+	 * @return 
+	 * Method 설명 : 사용자 정보 수정
 	 */
 	@Override
-	public int updateDateUser(UserVo userVo) {
-		return sqlSession.update("user.updateDateUser", userVo);
+	public int updateUser(UserVo userVo) {
+		return sqlSession.update("user.updateUser", userVo);
 	}
 
-	@Override
-	public List<UserVo> userPagingList(PageVo pageVo) {
-		return sqlSession.selectList("user.userPagingList", pageVo);
-	}
-
+	/** 
+	 * Method   : usersCnt
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @return 
+	 * Method 설명 : 사용자 전체수 조회
+	 */
 	@Override
 	public int usersCnt() {
 		return sqlSession.selectOne("user.usersCnt");
 	}
 
+	/** 
+	 * Method   : userPagingList
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @param pageVo
+	 * @return 
+	 * Method 설명 : 사용자 페이징 리스트 조회
+	 */
 	@Override
-	public List<UserVo> userListForPassEncrypt(SqlSession sqlSession) {
+	public List<UserVo> userPagingList(PageVo pageVo) {
+		return sqlSession.selectList("user.userPagingList", pageVo);
+	}
+	
+	@Override
+	public List<UserVo> userListForPassEncrypt() {
 		return sqlSession.selectList("user.userListForPassEncrypt");
 	}
 
 	@Override
-	public int updateUserEncryptPass(SqlSession sqlSession, UserVo userVo) {
+	public int updateUserEncryptPass(UserVo userVo) {
 		return sqlSession.update("user.updateUserEncryptPass", userVo);
 	}
 

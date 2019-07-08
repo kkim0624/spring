@@ -30,8 +30,9 @@ import kr.or.ddit.user.model.UserVo;
 @Controller
 @SessionAttributes("rangers")
 public class MainController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-
+	
 	// 메소드에 적용된 @ModelAttribute
 	// @RequestMapping이 붙은 메소드가 실행될때(요청이 처리될때)
 	// @ModelAttriubute가 적용된 메소드가 리턴하는 값을 Model객체에 자동적으로 넣어준다
@@ -136,7 +137,7 @@ public class MainController {
 	 * Method 설명 : Accept 헤더 정보 가져오기
 	 */
 	@RequestMapping("/main/header")
-	public String header(@RequestHeader(name = "Aceept", required = false) String accept) {
+	public String header(@RequestHeader(name = "Accept" /*, required = false*/) String accept) {
 		logger.debug("Accept : {}", accept);
 		return "main";
 	}

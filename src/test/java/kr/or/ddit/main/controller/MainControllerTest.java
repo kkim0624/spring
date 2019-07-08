@@ -90,58 +90,36 @@ public class MainControllerTest extends ControllerTestEnv{
 	 */
 	@Test
 	public void pathvariableTest() throws Exception {
-		
 		mockMvc.perform(get("/main/pathvariable/brown"))
-						.andExpect(status().is(200))
-						.andExpect(view().name("main")); 
-
+								.andExpect(status().is(200))
+								.andExpect(view().name("main"));
 	}
 	
 	/** 
 	 * Method   : pathvariableTest
 	 * 작성자 : PC04
 	 * 변경이력 :  
-	 * Method 설명 : @Pathvariable2 테스트 
+	 * Method 설명 : @Pathvariable 테스트 
 	 * @throws Exception 
 	 */
 	@Test
 	public void pathvariableTest2() throws Exception {
 		mockMvc.perform(get("/main/pathvariable/sally"))
-						.andExpect(status().is(200))
-						.andExpect(view().name("main")); 
+								.andExpect(status().is(200))
+								.andExpect(view().name("main"));
 	}
 	
-	/**
-	 * 
-	* Method : requestHeader
-	* 작성자 : PC04
-	* 변경이력 :
-	* @throws Exception
-	* Method 설명 : @RequestHeader test
+	/** 
+	 * Method   : requestHeaderTest
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @throws Exception 
+	 * Method 설명 : @RequestHeader test
 	 */
 	@Test
-	public void requestHeader() throws Exception {
+	public void requestHeaderTest() throws Exception {
 		mockMvc.perform(get("/main/header").accept("text/html"))
-						.andExpect(status().is(200))
-						.andExpect(view().name("main")); 
+								.andExpect(status().is(200))
+								.andExpect(view().name("main"));
 	}
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -47,58 +47,55 @@ public interface IUserDao {
 	 */
 	UserVo getUser(String userId);
 	
-	/**
-	 * 
-	* Method : updateDataUser
-	* 작성자 : PC04
-	* 변경이력 :
-	* @param userVo
-	* @return
-	* Method 설명 : 사용자 정보 업데이트
+	/** 
+	 * Method   : updateUser
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @param userVo
+	 * @return 
+	 * Method 설명 : 사용자 정보 업데이트
 	 */
-	int updateDateUser(UserVo userVo);
+	int updateUser(UserVo userVo);
 	
-	/**
-	 * 
-	* Method : userPagingList
-	* 작성자 : PC04
-	* 변경이력 :
-	* @param pageVo
-	* @return
-	* Method 설명 : 사용자 페이징 리스트 조회
-	 */
-	List<UserVo> userPagingList(PageVo pageVo);
-	
-	/**
-	 * 
-	* Method : usersCnt
-	* 작성자 : PC04
-	* 변경이력 :
-	* @return
-	* Method 설명 : 사용자 전체수 조회
+	/** 
+	 * Method   : usersCnt
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @return 
+	 * Method 설명 : 사용자 전체수 조회
 	 */
 	int usersCnt();
 	
-	/**
-	 * 
-	* Method : userListForPassEncrypt
-	* 작성자 : PC04
-	* 변경이력 :
-	* @param sqlSession
-	* @return
-	* Method 설명 : 비밀번호 암호화 적용대상 사용자 전체 조회
-	 */
-	List<UserVo> userListForPassEncrypt(SqlSession sqlSession);
 	
-	/**
-	 * 
-	* Method : updateUserEncryptPass
-	* 작성자 : PC04
-	* 변경이력 :
-	* @param sqlSession
-	* @param userVo
-	* @return
-	* Method 설명 : 사용자 비밀번호 암호화 적용
+	/** 
+	 * Method   : userPagingList
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @param pageVo
+	 * @return 
+	 * Method 설명 : 사용자 페이징 리스트 조회
 	 */
-	int updateUserEncryptPass(SqlSession sqlSession, UserVo userVo);
+	List<UserVo> userPagingList(PageVo pageVo);
+	
+	
+	/** 
+	 * Method   : userListForPassEncrypt
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @param sqlSession
+	 * @return 
+	 * Method 설명 : 비밀번호 암호화 적용대상 사용자 전체 조회 
+	 */
+	List<UserVo> userListForPassEncrypt();
+	
+	/** 
+	 * Method   : updateUserEncryptPass
+	 * 작성자 : PC04
+	 * 변경이력 : 
+	 * @param sqlSession
+	 * @param userVo
+	 * @return 
+	 * Method 설명 : 사용자 비밀번호 암호화 적용
+	 */
+	int updateUserEncryptPass(UserVo userVo);
 }

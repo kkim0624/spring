@@ -1,10 +1,12 @@
+<%@page import="kr.or.ddit.paging.model.PageVo"%>
+<%@page import="kr.or.ddit.user.model.UserVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -19,25 +21,18 @@
 
 <!-- css, js -->
 <%@include file="/WEB-INF/views/common/basicLib.jsp"%>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
 <script>
-	
-	$(document).ready(function(){
+	$(document).ready(function() {
+		<c:if test="${not empty msg}">
+		alert("${msg}");
+		<c:remove var="msg"/>
+		</c:if>
 
-		$("#userModiBtn").on("click", function() {
-
-			var userId = $("#sendId").text();
-			$("#userMo").val(userId);
-	
+		$("#userModifyBtn").on("click", function() {
 			$("#frm").submit();
-			
 		});
-		
 	});
-	
 </script>
-
 </head>
 
 <body>
@@ -46,6 +41,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
+
 			<!-- left -->
 			<%@include file="/WEB-INF/views/common/left.jsp"%>
 
@@ -54,78 +50,81 @@
 					<div class="col-sm-8 blog-main">
 						<h2 class="sub-header">사용자상세</h2>
 
-						<form id="frm" class="form-horizontal" role="form" action="${cp}/userModify">
+						<form id="frm"
+							action="${cp }/userModify"
+							method="get" class="form-horizontal" role="form">
+
+							<input type="hidden" name="userId" value="${userVo.userId }" />
 
 							<div class="form-group">
-								<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
+								<label for="userNm" class="col-sm-2 control-label">사용자
+									사진</label>
 								<div class="col-sm-10">
-									<img src="${cp}/profile?userId=${userVo.userId}">
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
-								<div class="col-sm-10">
-									<label id="sendId" class="control-label">${userVo.userId}</label>
+									<img
+										src="${cp }/profile?userId=${userVo.userId}" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label for="userNm" class="col-sm-2 control-label">사용자 이름</label>
+								<label for="userNm" class="col-sm-2 control-label">사용자
+									아이디</label>
 								<div class="col-sm-10">
-									<label class="control-label">${userVo.name}</label>
+									<label class="control-label">${userVo.userId }</label>
+									<!-- 									<input type="text" class="form-control" id="userId" name="userId" -->
+									<!-- 										placeholder="사용자 아이디"> -->
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="userNm" class="col-sm-2 control-label">사용자
+									이름</label>
+								<div class="col-sm-10">
+									<label class="control-label">${userVo.name }</label>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">별명</label>
 								<div class="col-sm-10">
-									<label class="control-label">${userVo.alias}</label>
+									<label class="control-label">${userVo.alias }</label>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">주소</label>
 								<div class="col-sm-10">
-									<label class="control-label">${userVo.addr1}</label>
+									<label class="control-label">${userVo.addr1 }</label>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">상세주소</label>
 								<div class="col-sm-10">
-									<label class="control-label">${userVo.addr2}</label>
+									<label class="control-label">${userVo.addr2 }</label>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">우편번호</label>
 								<div class="col-sm-10">
-									<label class="control-label">${userVo.zipcd}</label>
+									<label class="control-label">${userVo.zipcd }</label>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">생일</label>
 								<div class="col-sm-10">
-<%-- 								<label class="control-label">${userVo.birth}</label> --%>
-<%-- 								<label class="control-label">${userVo.birthStr}</label> --%>
-									<label class="control-label"><fmt:formatDate value="${userVo.birth}" pattern="yyyy-MM-dd"/></label>
+									<label class="control-label"><fmt:formatDate value="${userVo.birth }" pattern="yyyy-MM-dd"/></label>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button id="userModiBtn" type="button" class="btn btn-default">사용자 수정</button>
-									<input type="hidden" id="userMo" name="userMo">
+									<button id="userModifyBtn" type="button"
+										class="btn btn-default">사용자 수정</button>
 								</div>
-								
 							</div>
-
-							<!-- <input type="text" class="form-control" id="userId" -->
-							<!-- name="userId" placeholder="사용자 아이디"> -->
 						</form>
-
 					</div>
 				</div>
 			</div>
@@ -133,3 +132,8 @@
 	</div>
 </body>
 </html>
+
+
+
+
+

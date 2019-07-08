@@ -1,4 +1,4 @@
-package kr.or.ddit.encrypt.encrypt.kisa.sha256;
+package kr.or.ddit.encrypt.kisa.sha256;
 
 /**
 @file KISA_SHA256.java
